@@ -6,12 +6,13 @@
 /*   By: obamzuro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 16:11:53 by obamzuro          #+#    #+#             */
-/*   Updated: 2018/04/13 13:24:27 by obamzuro         ###   ########.fr       */
+/*   Updated: 2018/04/13 21:03:39 by obamzuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdio.h>
+#include <locale.h>
 
 //void	test(char *line)
 //{
@@ -175,11 +176,21 @@ void	check_d()
 //	ft_printf("%hd\n", 3);
 //	printf("%hd\n", 3);
 //	ft_printf("%d %d", 1, -2);
-	printf("%d\n", ft_printf("%#x\n", 0));
-//	printf("%#d\n", -41);
+//	printf("%d\n", ft_printf("%#x", 0));
+//	printf("%5.1S\n", L"±#ka¡ß");
+//	ft_printf("my = %5.1S", L"±#ka¡ß");
+	printf("%5.1%\n", L"±#ka¡ß");
+	ft_printf("%5.1%", L"±#ka¡ß");
 }
 
 int main(void)
 {
+	char *l;
+
+	l = setlocale(LC_ALL, "");
+	if (l == NULL)
+		printf("Locale not set\n");
+	else
+		printf("Locale set to %s\n", l);
 	check_d();
 }
