@@ -6,7 +6,7 @@
 #    By: obamzuro <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/20 11:09:03 by obamzuro          #+#    #+#              #
-#    Updated: 2018/04/12 23:53:28 by obamzuro         ###   ########.fr        #
+#    Updated: 2018/04/13 00:46:12 by obamzuro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,9 +78,10 @@ SRC = ft_memset.c				\
 	  ft_strcpy_gnl.c			\
 	  get_next_line.c			\
 	  ft_nbr_size.c				\
+	  ft_itoa_base.c			\
 	  ft_printf.c				\
-	  ft_prints.c				\
-	  ft_itoa_base.c
+	  ft_decimal.c				\
+	  ft_unsigned.c				\
 
 SRCDIRS = $(addprefix libft/, $(SRC))
 

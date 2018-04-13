@@ -6,7 +6,7 @@
 /*   By: obamzuro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 16:11:53 by obamzuro          #+#    #+#             */
-/*   Updated: 2018/04/12 23:47:04 by obamzuro         ###   ########.fr       */
+/*   Updated: 2018/04/13 13:24:27 by obamzuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,8 +174,9 @@ void	check_d()
 //	printf("%hd\n", 65535);
 //	ft_printf("%hd\n", 3);
 //	printf("%hd\n", 3);
-	ft_printf("%d %d", 1, -2);
-//	printf("%hhd\n", (char)128);
+//	ft_printf("%d %d", 1, -2);
+	printf("%d\n", ft_printf("%#x\n", 0));
+//	printf("%#d\n", -41);
 }
 
 int main(void)
