@@ -6,7 +6,7 @@
 /*   By: obamzuro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 16:11:53 by obamzuro          #+#    #+#             */
-/*   Updated: 2018/04/13 21:03:39 by obamzuro         ###   ########.fr       */
+/*   Updated: 2018/04/13 22:07:11 by obamzuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,8 +179,16 @@ void	check_d()
 //	printf("%d\n", ft_printf("%#x", 0));
 //	printf("%5.1S\n", L"±#ka¡ß");
 //	ft_printf("my = %5.1S", L"±#ka¡ß");
-	printf("%5.1%\n", L"±#ka¡ß");
-	ft_printf("%5.1%", L"±#ka¡ß");
+	int a;
+	int b;
+
+	a = printf("%C\n", L'猫');
+	b = ft_printf("%C\n", L'猫');
+	printf("a = %d b = %d\n", a, b);
+//	if (a == b)
+//		printf("yes\n");
+//	else
+//		printf("no\n");
 }
 
 int main(void)
