@@ -6,13 +6,14 @@
 /*   By: obamzuro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 16:11:53 by obamzuro          #+#    #+#             */
-/*   Updated: 2018/04/13 22:07:11 by obamzuro         ###   ########.fr       */
+/*   Updated: 2018/04/15 05:13:31 by obamzuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdio.h>
 #include <locale.h>
+#include <limits.h>
 
 //void	test(char *line)
 //{
@@ -181,9 +182,27 @@ void	check_d()
 //	ft_printf("my = %5.1S", L"±#ka¡ß");
 	int a;
 	int b;
+	char *s = malloc(12);
+	unsigned long l = 9223372036854775806;
+	//"dfjbsldjds";
+	char c;
 
-	a = printf("%C\n", L'猫');
-	b = ft_printf("%C\n", L'猫');
+//	a = printf("%.4S\n", L"ÊM-M-^QÊM-^XØ‰∏M-ÂM-^O™ÁM-^L´„M-M-^B");
+//	b = ft_printf("%.4S\n", L"ÊM-M-^QÊM-^XØ‰∏M-ÂM-^O™ÁM-^L´„M-M-^B");
+//
+//	a = printf(/*"%.5p, %.p %9.2p {%p} %-13p*/" {%05p}\n", s/*, 0, 1234, 0, s, 0*/);
+//	b = ft_printf(/*"%.5p, %.p %9.2p {%p} %-13p*/" {%05p}\n", s/*, 0, 1234, 0, s, 0*/);
+
+	a = printf("{%#.5x} %#x %#x\n", 1, 42, 0);
+	b = ft_printf("{%#.5x} %#x %#x\n", 1, 42, 0);
+//	b = ft_printf("%S\n", L"хуй");
+//	printf("a = %d b = %d\n", a, b);
+//	a = printf("%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S\n",
+//L"Α α", L"Β β", L"Γ γ", L"Δ δ", L"Ε ε", L"Ζ ζ", L"Η η", L"Θ θ", L"Ι ι", L"Κ κ", L"Λ λ", L"Μ μ",
+//L"Ν ν", L"Ξ ξ", L"Ο ο", L"Π π", L"Ρ ρ", L"Σ σ", L"Τ τ", L"Υ υ", L"Φ φ", L"Χ χ", L"Ψ ψ", L"Ω ω", L"");
+//	b = ft_printf("%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S\n",
+//L"Α α", L"Β β", L"Γ γ", L"Δ δ", L"Ε ε", L"Ζ ζ", L"Η η", L"Θ θ", L"Ι ι", L"Κ κ", L"Λ λ", L"Μ μ",
+//L"Ν ν", L"Ξ ξ", L"Ο ο", L"Π π", L"Ρ ρ", L"Σ σ", L"Τ τ", L"Υ υ", L"Φ φ", L"Χ χ", L"Ψ ψ", L"Ω ω", L"");
 	printf("a = %d b = %d\n", a, b);
 //	if (a == b)
 //		printf("yes\n");
