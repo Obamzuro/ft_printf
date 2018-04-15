@@ -6,7 +6,7 @@
 #    By: obamzuro <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/20 11:09:03 by obamzuro          #+#    #+#              #
-#    Updated: 2018/04/15 03:55:18 by obamzuro         ###   ########.fr        #
+#    Updated: 2018/04/15 09:54:50 by obamzuro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -82,9 +82,14 @@ SRC = ft_memset.c				\
 	  ft_printf.c				\
 	  ft_decimal.c				\
 	  ft_unsigned.c				\
+	  ft_unsigned_octal.c		\
+	  ft_unsigned_hex.c			\
 	  ft_char.c					\
 	  ft_string.c				\
 	  ft_pointer.c				\
+	  ft_getvarg.c				\
+	  ft_fillglob.c				\
+	  ft_printf_plus.c			\
 
 SRCDIRS = $(addprefix libft/, $(SRC))
 
