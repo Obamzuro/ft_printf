@@ -6,7 +6,7 @@
 /*   By: obamzuro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/15 09:40:43 by obamzuro          #+#    #+#             */
-/*   Updated: 2018/04/15 21:31:32 by obamzuro         ###   ########.fr       */
+/*   Updated: 2018/04/30 22:22:07 by obamzuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,12 @@ size_t		ft_positive_atoi(const char **src)
 	if (**src < '0' || **src > '9')
 		return (0);
 	t = **src - '0';
-	while ((*++(*src) && **src >= '0') && **src <= '9' && t >= 0)
+	++(*src);
+	while (**src >= '0' && **src <= '9')
+	{
 		t = t * 10 + (**src - 48);
+		++(*src);
+	}
 	return (t);
 }
 
@@ -65,9 +69,9 @@ t_size_corr	*read_size(const char **src)
 	i = 0;
 	while (i < AM_SIZES)
 	{
-		if (ft_strnstr(*src, g_sizes[i].str, ft_strlen(g_sizes[i].str)))
+		if (pf_strnstr(*src, g_sizes[i].str))
 		{
-			*src += ft_strlen(g_sizes[i].str);
+			*src += g_sizes[i].len;
 			return (g_sizes + i);
 		}
 		++i;

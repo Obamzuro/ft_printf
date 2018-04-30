@@ -6,7 +6,7 @@
 /*   By: obamzuro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 19:42:28 by obamzuro          #+#    #+#             */
-/*   Updated: 2018/04/15 08:56:16 by obamzuro         ###   ########.fr       */
+/*   Updated: 2018/04/30 22:05:35 by obamzuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,53 +19,52 @@ static void		print_nsymb(size_t diff, char symb)
 	i = 0;
 	while (i < diff)
 	{
-		write(1, &symb, 1);
+		pf_write(symb);
 		i++;
 	}
 }
 
 static size_t	print_str(t_special *spec, char *n, size_t size)
 {
-	size_t i;
+	size_t num;
 
-	i = 0;
 	if (spec->conversion->ascii == 's')
-		i = ft_putstr(n, size);
+	{
+		ft_putstr(n, size);
+		num = size;
+	}
 	else if (spec->conversion->ascii == 'S')
-		i = ft_wputstr((wchar_t *)n, size);
-	return (i);
+		num = ft_wputstr((wchar_t *)n);
+	return (num);
 }
 
-static void		stabilize_width(t_special *spec, char *n, int *res)
+static void		stabilize_width(t_special *spec, char *n)
 {
 	size_t		nsize;
 	size_t		diffwidth;
-	size_t		total;
 
 	diffwidth = 0;
 	nsize = 0;
-	total = 0;
 	nsize = spec->conversion->ascii == 's' ? ft_strlen(n)
 		: ft_wstrlen((wchar_t *)n);
-	total = spec->conversion->ascii == 's' ?
-		nsize : ft_wstrlen_total((wchar_t *)n);
-	if (spec->precision != -1 && (size_t)spec->precision < total)
-		total = spec->precision;
-	if (spec->conversion->ascii == 'S' && spec->width > (int)total)
-		diffwidth = spec->width - total;
-	if (spec->conversion->ascii == 's' && spec->width > (int)total)
-		diffwidth = spec->width - total;
-	if (!g_flags[minus].exist && g_flags[zero].exist)
-		print_nsymb(diffwidth, '0');
-	else if (!g_flags[minus].exist)
-		print_nsymb(diffwidth, ' ');
-	nsize = print_str(spec, n, total);
+	if ((size_t)spec->precision < nsize && spec->conversion->ascii == 's')
+		nsize = spec->precision;
+	if (spec->width > nsize)
+		diffwidth = spec->width - nsize;
+	if (!g_flags[minus].exist)
+	{
+		if (g_flags[zero].exist)
+			print_nsymb(diffwidth, '0');
+		else
+			print_nsymb(diffwidth, ' ');
+	}
+	nsize = print_str(spec, n, nsize);
 	if (g_flags[minus].exist)
 		print_nsymb(diffwidth, ' ');
-	*res += spec->width > (int)nsize ? spec->width : nsize;
+//	*res += spec->width > (int)nsize ? spec->width : nsize;
 }
 
-void			print_string(t_special *spec, va_list *ap, int *res)
+void			print_string(t_special *spec, va_list *ap)
 {
 	char	*n;
 	char	ret;
@@ -84,7 +83,7 @@ void			print_string(t_special *spec, va_list *ap, int *res)
 		else if (spec->conversion->ascii == 'S')
 			n = (char *)L"(null)";
 	}
-	stabilize_width(spec, n, res);
+	stabilize_width(spec, n);
 	if (ret)
 		spec->conversion->ascii = 's';
 }

@@ -6,7 +6,7 @@
 #    By: obamzuro <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/20 11:09:03 by obamzuro          #+#    #+#              #
-#    Updated: 2018/04/15 21:41:47 by obamzuro         ###   ########.fr        #
+#    Updated: 2018/04/30 21:45:31 by obamzuro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,10 +31,10 @@ SRC = ft_strnstr.c				\
 	  ft_unsigned_hex.c			\
 	  ft_char.c					\
 	  ft_string.c				\
-	  ft_pointer.c				\
 	  ft_getvarg.c				\
 	  ft_fillglob.c				\
 	  ft_printf_plus.c			\
+	  ft_pf_write.c				\
 
 SRCDIRS = $(addprefix source/, $(SRC))
 

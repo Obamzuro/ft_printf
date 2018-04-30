@@ -6,7 +6,7 @@
 /*   By: obamzuro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/15 03:47:56 by obamzuro          #+#    #+#             */
-/*   Updated: 2018/04/15 21:35:41 by obamzuro         ###   ########.fr       */
+/*   Updated: 2018/04/30 21:39:48 by obamzuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void		print_nsymb(int diff, char symb)
 	i = 0;
 	while (i < diff)
 	{
-		write(1, &symb, 1);
+		pf_write(1, &symb, 1);
 		i++;
 	}
 }
@@ -30,7 +30,7 @@ static void		fix_nsize(t_special *spec, uintmax_t n, ssize_t *nsize)
 		*nsize = 0;
 }
 
-static void		stabilize_width(t_special *spec, uintmax_t n, int *res)
+static void		stabilize_width(t_special *spec, uintmax_t n)
 {
 	ssize_t		nsize;
 	int			diffprec;
@@ -42,7 +42,10 @@ static void		stabilize_width(t_special *spec, uintmax_t n, int *res)
 	fix_nsize(spec, n, &nsize);
 	if ((spec->precision > 0 && spec->width <= nsize) || (
 				g_flags[zero].exist))
-		write(1, "0x", 2);
+	{
+		pf_write('0');
+		pf_write('x');
+	}
 	if (spec->precision > nsize)
 		diffprec = spec->precision - nsize;
 	nsize += diffprec;
@@ -52,17 +55,21 @@ static void		stabilize_width(t_special *spec, uintmax_t n, int *res)
 		g_flags[zero].exist && spec->precision == -1 ?
 			print_nsymb(diffwidth, '0') : print_nsymb(diffwidth, ' ');
 	print_nsymb(diffprec, '0');
-	!g_flags[zero].exist && !diffprec ? write(1, "0x", 2) : 1;
+	if (!g_flags[zero].exist && !diffprec)
+	{
+		pf_write('0');
+		pf_write('x');
+	}
 	n || spec->precision != 0 ? ft_uputnbr_common(n, 16, 0) : 1;
 	if (g_flags[minus].exist)
 		print_nsymb(diffwidth, ' ');
-	*res += spec->width > nsize + 2 ? spec->width : nsize + 2;
+//	*res += spec->width > nsize + 2 ? spec->width : nsize + 2;
 }
 
-void			print_pointer(t_special *spec, va_list *ap, int *res)
+void			print_pointer(t_special *spec, va_list *ap)
 {
 	uintmax_t	n;
 
 	n = va_arg(*ap, unsigned long long int);
-	stabilize_width(spec, n, res);
+	stabilize_width(spec, n);
 }

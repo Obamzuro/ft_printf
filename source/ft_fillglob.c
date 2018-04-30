@@ -6,7 +6,7 @@
 /*   By: obamzuro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/15 09:33:28 by obamzuro          #+#    #+#             */
-/*   Updated: 2018/04/15 09:46:57 by obamzuro         ###   ########.fr       */
+/*   Updated: 2018/04/30 22:20:32 by obamzuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	fill_convs_plus(void)
 	g_convs[13].ascii = '%';
 	g_convs[13].f = print_char;
 	g_convs[14].ascii = 'p';
-	g_convs[14].f = print_pointer;
+	g_convs[14].f = print_unsigned_hex;
 }
 
 void		fill_convs(void)
@@ -54,18 +54,25 @@ void		fill_convs(void)
 void		fill_sizes(void)
 {
 	g_sizes[INTMAX_T].str = "j";
+	g_sizes[INTMAX_T].len = 1;
 	g_sizes[INTMAX_T].type = INTMAX_T;
 	g_sizes[SIZE_T].str = "z";
+	g_sizes[SIZE_T].len = 1;
 	g_sizes[SIZE_T].type = SIZE_T;
 	g_sizes[LONG_LONG_INT].str = "ll";
+	g_sizes[LONG_LONG_INT].len = 2;
 	g_sizes[LONG_LONG_INT].type = LONG_LONG_INT;
 	g_sizes[LONG_INT].str = "l";
+	g_sizes[LONG_INT].len = 1;
 	g_sizes[LONG_INT].type = LONG_INT;
 	g_sizes[SHORT_INT].str = "h";
+	g_sizes[SHORT_INT].len = 1;
 	g_sizes[SHORT_INT].type = SHORT_INT;
 	g_sizes[CHAR].str = "hh";
+	g_sizes[CHAR].len = 2;
 	g_sizes[CHAR].type = CHAR;
 	g_sizes[INT].str = "";
+	g_sizes[INT].len = 0;
 	g_sizes[INT].type = INT;
 }
 

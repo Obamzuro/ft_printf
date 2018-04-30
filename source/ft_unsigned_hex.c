@@ -6,7 +6,7 @@
 /*   By: obamzuro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/15 06:53:13 by obamzuro          #+#    #+#             */
-/*   Updated: 2018/04/15 09:18:56 by obamzuro         ###   ########.fr       */
+/*   Updated: 2018/04/30 21:44:34 by obamzuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	print_nsymb(size_t diff, char symb)
 	i = 0;
 	while (i < diff)
 	{
-		write(1, &symb, 1);
+		pf_write(symb);
 		i++;
 	}
 }
@@ -29,9 +29,15 @@ static void	print_prefix(t_special *spec)
 	if (g_flags[sharp].exist)
 	{
 		if (spec->conversion->ascii == 'x')
-			write(1, "0x", 2);
+		{
+			pf_write('0');
+			pf_write('x');
+		}
 		if (spec->conversion->ascii == 'X')
-			write(1, "0X", 2);
+		{
+			pf_write('0');
+			pf_write('X');
+		}
 	}
 }
 
@@ -52,7 +58,7 @@ static void	calc_diffs(t_special *spec, ssize_t *nsize,
 		diffs->diffwidth = spec->width - *nsize;
 }
 
-static void	stabilize_width(t_special *spec, uintmax_t n, int *res)
+static void	stabilize_width(t_special *spec, uintmax_t n)
 {
 	ssize_t		nsize;
 	t_diffs		diffs;
@@ -74,13 +80,13 @@ static void	stabilize_width(t_special *spec, uintmax_t n, int *res)
 		ft_uputnbr_common(n, 16, spec->conversion->ascii == 'X');
 	if (g_flags[minus].exist)
 		print_nsymb(diffs.diffwidth, ' ');
-	*res += spec->width > nsize ? spec->width : nsize;
+//	*res += spec->width > nsize ? spec->width : nsize;
 }
 
-void		print_unsigned_hex(t_special *spec, va_list *ap, int *res)
+void		print_unsigned_hex(t_special *spec, va_list *ap)
 {
 	uintmax_t	n;
 
 	get_unsigned(spec, ap, &n);
-	stabilize_width(spec, n, res);
+	stabilize_width(spec, n);
 }

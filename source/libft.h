@@ -6,13 +6,14 @@
 /*   By: obamzuro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/20 11:38:42 by obamzuro          #+#    #+#             */
-/*   Updated: 2018/04/15 21:35:42 by obamzuro         ###   ########.fr       */
+/*   Updated: 2018/04/30 22:20:40 by obamzuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
-# define BUFF_SIZE 100000000
+# define PRINTF_BUFF_SIZE 4096
+# define BUFF_SIZE 2048
 # define SMARTCHECK(x) if (!(x)) return (-1)
 # define AM_FLAGS 5
 # define AM_SIZES 6
@@ -60,7 +61,6 @@ size_t			ft_strlcat(char *dst, const char *src, size_t size);
 char			*ft_strchr(const char *s, int c);
 char			*ft_strrchr(const char *s, int c);
 char			*ft_strstr(const char *big, const char *little);
-char			*ft_strnstr(const char *big, const char *little, size_t len);
 int				ft_strcmp(const char *s1, const char *s2);
 int				ft_strncmp(const char *s1, const char *s2, size_t n);
 int				ft_atoi(const char *str);
@@ -88,13 +88,13 @@ char			*ft_strtrim(const char *s);
 char			**ft_strsplit(const char *s, char c);
 char			*ft_itoa(int n);
 int				ft_putchar(wchar_t c);
-size_t			ft_putstr(const char *s, size_t size);
-size_t			ft_wputstr(const wchar_t *s, size_t size);
+void			ft_putstr(const char *s, size_t size);
+size_t			ft_wputstr(const wchar_t *s);
 void			ft_putendl(const char *s);
 void			ft_putnbr(int n);
 int				ft_putchar_fd(wchar_t c, int fd);
-size_t			ft_putstr_fd(const char *s, int fd, size_t size);
-size_t			ft_wputstr_fd(const wchar_t *s, int fd, size_t size);
+void			ft_putstr_fd(const char *s, int fd, size_t size);
+size_t			ft_wputstr_fd(const wchar_t *s, int fd);
 void			ft_putendl_fd(const char *s, int fd);
 void			ft_putnbr_fd(int n, int fd);
 t_list			*ft_lstnew(const void *content, size_t content_size);
@@ -147,8 +147,9 @@ typedef enum	e_size
 
 typedef struct	s_size_corr
 {
-	t_size	type;;
+	t_size	type;
 	char	*str;
+	char	len;
 }				t_size_corr;
 
 struct s_conv_corr;
@@ -164,7 +165,7 @@ typedef struct	s_special
 typedef struct	s_conv_corr
 {
 	char	ascii;
-	void	(*f)(t_special *, va_list *, int *);
+	void	(*f)(t_special *, va_list *);
 }				t_conv_corr;
 
 typedef struct	s_diffs
@@ -173,13 +174,13 @@ typedef struct	s_diffs
 	size_t	diffprec;
 }				t_diffs;
 
-void			print_decimal(t_special *spec, va_list *ap, int *res);
-void			print_unsigned(t_special *spec, va_list *ap, int *res);
-void			print_unsigned_hex(t_special *spec, va_list *ap, int *res);
-void			print_unsigned_octal(t_special *spec, va_list *ap, int *res);
-void			print_char(t_special *spec, va_list *ap, int *res);
-void			print_string(t_special *spec, va_list *ap, int *res);
-void			print_pointer(t_special *spec, va_list *ap, int *res);
+void			print_decimal(t_special *spec, va_list *ap);
+void			print_unsigned(t_special *spec, va_list *ap);
+void			print_unsigned_hex(t_special *spec, va_list *ap);
+void			print_unsigned_octal(t_special *spec, va_list *ap);
+void			print_char(t_special *spec, va_list *ap);
+void			print_string(t_special *spec, va_list *ap);
+void			print_pointer(t_special *spec, va_list *ap);
 void			get_unsigned(t_special *spec, va_list *ap, uintmax_t *n);
 void			get_decimal(t_special *spec, va_list *ap, intmax_t *n);
 
@@ -199,4 +200,19 @@ t_conv_corr		g_convs[AM_CONVS];
 t_flags_corr	g_flags[AM_FLAGS];
 
 int				ft_printf(const char *src, ...);
+
+typedef struct	s_buffer
+{
+	char	line[PRINTF_BUFF_SIZE];
+	size_t	cur;
+	size_t	ret;
+}				t_buffer;
+
+t_buffer		g_buff;
+
+void			pf_write(char src);
+void			pf_write_tail(void);
+
+char			pf_strnstr(const char *big, const char *little);
+
 #endif

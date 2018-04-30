@@ -6,7 +6,7 @@
 /*   By: obamzuro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/26 01:10:52 by obamzuro          #+#    #+#             */
-/*   Updated: 2018/04/15 05:18:15 by obamzuro         ###   ########.fr       */
+/*   Updated: 2018/04/30 21:52:00 by obamzuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ static void	print_for_two(int c, int fd)
 	char	b;
 
 	b = (char)(((c >> 6) & 0xDF) | 0xC0);
-	write(fd, &b, 1);
+	pf_write(b);
 	b = (char)((c & 0xBF) | 0x80);
-	write(fd, &b, 1);
+	pf_write(b);
 }
 
 static void	print_for_three(int c, int fd)
@@ -38,11 +38,11 @@ static void	print_for_three(int c, int fd)
 	char	b;
 
 	b = (char)(((c >> 12) & 0xEF) | 0xE0);
-	write(fd, &b, 1);
+	pf_write(b);
 	b = (char)(((c >> 6) & 0xBF) | 0x80);
-	write(fd, &b, 1);
+	pf_write(b);
 	b = (char)((c & 0xBF) | 0x80);
-	write(fd, &b, 1);
+	pf_write(b);
 }
 
 static void	print_for_four(int c, int fd)
@@ -50,13 +50,13 @@ static void	print_for_four(int c, int fd)
 	char	b;
 
 	b = (char)(((c >> 18) & 0xF7) | 0xF0);
-	write(fd, &b, 1);
+	pf_write(b);
 	b = (char)(((c >> 12) & 0xBF) | 0x80);
-	write(fd, &b, 1);
+	pf_write(b);
 	b = (char)(((c >> 6) & 0xBF) | 0x80);
-	write(fd, &b, 1);
+	pf_write(b);
 	b = (char)((c & 0xBF) | 0x80);
-	write(fd, &b, 1);
+	pf_write(b);
 }
 
 int			ft_putchar_fd(wchar_t c, int fd)
@@ -65,7 +65,7 @@ int			ft_putchar_fd(wchar_t c, int fd)
 
 	b = count_bytes(c);
 	if (b == 1)
-		write(fd, &c, 1);
+		pf_write(c);
 	else if (b == 2)
 		print_for_two(c, fd);
 	else if (b == 3)

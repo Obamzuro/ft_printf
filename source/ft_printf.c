@@ -6,7 +6,7 @@
 /*   By: obamzuro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 15:51:20 by obamzuro          #+#    #+#             */
-/*   Updated: 2018/04/15 23:53:23 by obamzuro         ###   ########.fr       */
+/*   Updated: 2018/04/30 22:03:26 by obamzuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void		fix_conversion(t_special *spec)
 		spec->size = g_sizes + LONG_INT;
 }
 
-static void	print_special(const char **src, va_list *ap, int *res)
+static void	print_special(const char **src, va_list *ap)
 {
 	t_special	special;
 	char		convret;
@@ -30,31 +30,56 @@ static void	print_special(const char **src, va_list *ap, int *res)
 	special.size = read_size(src);
 	special.conversion = read_conversion(src);
 	fix_conversion(&special);
-	special.conversion->f(&special, ap, res);
+	special.conversion->f(&special, ap);
 }
 
 int			ft_printf(const char *src, ...)
 {
-	va_list	ap;
-	int		res;
+	va_list		ap;
 
+//	/* FIXME only 1 filling pls */
+	g_buff.cur = 0;
 	va_start(ap, src);
 	fill_sizes();
 	fill_convs();
 	fill_flags();
-	res = 0;
 	while (*src)
 	{
 		if (*src == '%')
 		{
 			++src;
-			print_special(&src, &ap, &res);
+			print_special(&src, &ap);
 			continue;
 		}
-		write(1, src, 1);
+		pf_write(*src);
 		++src;
-		++res;
 	}
 	va_end(ap);
-	return (res);
+	pf_write_tail();
+	return (g_buff.ret * PRINTF_BUFF_SIZE + g_buff.cur);
 }
+
+//size_t		ft_snprintf(char *line, size_t *cur, const char *src, ...)
+//{
+//	va_list	ap;
+//	int		res;
+//
+//	va_start(ap, src);
+//	/* FIXME only 1 filling pls */
+//	fill_sizes();
+//	fill_convs();
+//	fill_flags();
+//	while (*src)
+//	{
+//		if (*src == '%')
+//		{
+//			++src;
+//			print_special(&src, &ap, &res);
+//			continue;
+//		}
+//		snwrite(line, cur, *src);
+//		++src;
+//	}
+//	va_end(ap);
+//	return (*cur);
+//}

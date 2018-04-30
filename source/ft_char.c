@@ -6,7 +6,7 @@
 /*   By: obamzuro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 19:07:42 by obamzuro          #+#    #+#             */
-/*   Updated: 2018/04/15 08:51:59 by obamzuro         ###   ########.fr       */
+/*   Updated: 2018/04/30 21:37:47 by obamzuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ static void	print_nsymb(size_t diff, char symb)
 	i = 0;
 	while (i < diff)
 	{
-		write(1, &symb, 1);
+		pf_write(symb);
 		i++;
 	}
 }
 
-static void	stabilize_width(t_special *spec, uintmax_t n, int *res)
+static void	stabilize_width(t_special *spec, uintmax_t n)
 {
 	ssize_t		nsize;
 	size_t		diffwidth;
@@ -43,10 +43,10 @@ static void	stabilize_width(t_special *spec, uintmax_t n, int *res)
 		write(1, &n, 1);
 	if (g_flags[minus].exist)
 		print_nsymb(diffwidth, ' ');
-	*res += spec->width > nsize ? spec->width : nsize;
+//	*res += spec->width > nsize ? spec->width : nsize;
 }
 
-void		print_char(t_special *spec, va_list *ap, int *res)
+void		print_char(t_special *spec, va_list *ap)
 {
 	uintmax_t	n;
 	char		ret;
@@ -61,7 +61,7 @@ void		print_char(t_special *spec, va_list *ap, int *res)
 		n = '%';
 	else
 		n = va_arg(*ap, unsigned int);
-	stabilize_width(spec, n, res);
+	stabilize_width(spec, n);
 	if (ret)
 		spec->conversion->ascii = 'c';
 }

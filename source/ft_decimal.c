@@ -6,7 +6,7 @@
 /*   By: obamzuro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 23:00:51 by obamzuro          #+#    #+#             */
-/*   Updated: 2018/04/15 09:08:19 by obamzuro         ###   ########.fr       */
+/*   Updated: 2018/04/30 21:41:04 by obamzuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	print_nsymb(size_t diff, char symb)
 	i = 0;
 	while (i < diff)
 	{
-		write(1, &symb, 1);
+		pf_write(symb);
 		i++;
 	}
 }
@@ -27,11 +27,11 @@ static void	print_nsymb(size_t diff, char symb)
 static void	print_sign(t_special *spec, intmax_t n)
 {
 	if (n < 0)
-		write(1, "-", 1);
+		pf_write('-');
 	else if (g_flags[plus].exist)
-		write(1, "+", 1);
+		pf_write('+');
 	else if (g_flags[space].exist)
-		write(1, " ", 1);
+		pf_write(' ');
 }
 
 static void	calc_diffs(t_special *spec, intmax_t n,
@@ -51,7 +51,7 @@ static void	calc_diffs(t_special *spec, intmax_t n,
 		diffs->diffwidth = spec->width - *nsize;
 }
 
-static void	stabilize_width(t_special *spec, intmax_t n, int *res)
+static void	stabilize_width(t_special *spec, intmax_t n)
 {
 	ssize_t		nsize;
 	t_diffs		diffs;
@@ -75,13 +75,13 @@ static void	stabilize_width(t_special *spec, intmax_t n, int *res)
 		ft_putnbr_common(n, 10, 0);
 	if (g_flags[minus].exist)
 		print_nsymb(diffs.diffwidth, ' ');
-	*res += spec->width > nsize ? spec->width : nsize;
+//	*res += spec->width > nsize ? spec->width : nsize;
 }
 
-void		print_decimal(t_special *spec, va_list *ap, int *res)
+void		print_decimal(t_special *spec, va_list *ap)
 {
 	intmax_t	n;
 
 	get_decimal(spec, ap, &n);
-	stabilize_width(spec, n, res);
+	stabilize_width(spec, n);
 }
