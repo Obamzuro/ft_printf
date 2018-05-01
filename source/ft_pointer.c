@@ -38,7 +38,7 @@ static void		stabilize_width(t_special *spec, uintmax_t n)
 
 	diffprec = 0;
 	diffwidth = 0;
-	nsize = ft_unbr_size(n, 16, 0);
+	nsize = pf_unbr_size(n, 16, 0);
 	fix_nsize(spec, n, &nsize);
 	if ((spec->precision > 0 && spec->width <= nsize) || (
 				g_flags[zero].exist))
@@ -60,7 +60,7 @@ static void		stabilize_width(t_special *spec, uintmax_t n)
 		pf_write('0');
 		pf_write('x');
 	}
-	n || spec->precision != 0 ? ft_uputnbr_common(n, 16, 0) : 1;
+	n || spec->precision != 0 ? pf_uputnbr_common(n, 16, 0) : 1;
 	if (g_flags[minus].exist)
 		print_nsymb(diffwidth, ' ');
 //	*res += spec->width > nsize + 2 ? spec->width : nsize + 2;

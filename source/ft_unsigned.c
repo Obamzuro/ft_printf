@@ -26,7 +26,7 @@ static void	print_nsymb(size_t diff, char symb)
 
 static void	calc_nsize(t_special *spec, uintmax_t n, ssize_t *nsize)
 {
-	*nsize = ft_unbr_size(n, 10, 0);
+	*nsize = pf_unbr_size(n, 10, 0);
 	if (!n && !spec->precision)
 		*nsize = 0;
 }
@@ -54,7 +54,7 @@ static void	stabilize_width(t_special *spec, uintmax_t n)
 	}
 	print_nsymb(diffprec, '0');
 	if (n || spec->precision)
-		ft_uputnbr_common(n, 10, 0);
+		pf_uputnbr_common(n, 10, 0);
 	if (g_flags[minus].exist)
 		print_nsymb(diffwidth, ' ');
 }

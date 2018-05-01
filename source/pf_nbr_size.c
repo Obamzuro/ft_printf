@@ -1,57 +1,53 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   pf_nbr_size.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: obamzuro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/21 19:45:39 by obamzuro          #+#    #+#             */
-/*   Updated: 2018/04/15 01:18:27 by obamzuro         ###   ########.fr       */
+/*   Created: 2018/05/01 13:26:34 by obamzuro          #+#    #+#             */
+/*   Updated: 2018/05/01 13:26:34 by obamzuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static char	count_bytes(wchar_t a)
-{
-	if (a <= 0x7F)
-		return (1);
-	if (a <= 0x7FF)
-		return (2);
-	if (a <= 0xFFFF)
-		return (3);
-	return (4);
-}
-
-size_t		ft_strlen(const char *s)
+size_t	pf_nbr_size(intmax_t n, char base, char alternative)
 {
 	size_t i;
 
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
-}
-
-size_t		ft_wstrlen(const wchar_t *s)
-{
-	size_t i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
-}
-
-size_t		ft_wstrlen_total(const wchar_t *s)
-{
-	size_t i;
-
-	i = 0;
-	while (*s)
+	i = 1;
+	while (n / base)
 	{
-		i += count_bytes(*s);
-		++s;
+		++i;
+		n /= base;
+	}
+	if (alternative)
+	{
+		if (base == 8)
+			++i;
+		else if (base == 16)
+			i += 2;
+	}
+	return (i);
+}
+
+size_t	pf_unbr_size(uintmax_t n, char base, char alternative)
+{
+	size_t i;
+
+	i = 1;
+	while (n / base)
+	{
+		++i;
+		n /= base;
+	}
+	if (alternative)
+	{
+		if (base == 8)
+			++i;
+		else if (base == 16)
+			i += 2;
 	}
 	return (i);
 }

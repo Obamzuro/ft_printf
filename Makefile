@@ -6,18 +6,19 @@
 #    By: obamzuro <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/20 11:09:03 by obamzuro          #+#    #+#              #
-#    Updated: 2018/05/01 12:52:46 by obamzuro         ###   ########.fr        #
+#    Updated: 2018/05/01 13:28:35 by obamzuro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
-SRC = ft_strnstr.c				\
-	  ft_strlen.c				\
-	  ft_putchar.c				\
-	  ft_putstr.c				\
-	  ft_putnbr.c				\
-	  ft_nbr_size.c				\
+SRC = pf_strstr.c				\
+	  pf_write.c				\
+	  pf_strlen.c				\
+	  pf_putchar.c				\
+	  pf_putstr.c				\
+	  pf_putnbr.c				\
+	  pf_nbr_size.c				\
 	  ft_printf.c				\
 	  ft_decimal.c				\
 	  ft_unsigned.c				\
@@ -28,7 +29,6 @@ SRC = ft_strnstr.c				\
 	  ft_getvarg.c				\
 	  ft_fillglob.c				\
 	  ft_printf_plus.c			\
-	  ft_pf_write.c				\
 
 SRCDIRS = $(addprefix source/, $(SRC))
 

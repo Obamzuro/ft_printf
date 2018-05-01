@@ -30,11 +30,11 @@ static size_t	print_str(t_special *spec, char *n, size_t size)
 
 	if (spec->conversion->ascii == 's')
 	{
-		ft_putstr(n, size);
+		pf_putstr(n, size);
 		num = size;
 	}
 	else if (spec->conversion->ascii == 'S')
-		num = ft_wputstr((wchar_t *)n);
+		num = pf_wputstr((wchar_t *)n);
 	return (num);
 }
 
@@ -45,8 +45,8 @@ static void		stabilize_width(t_special *spec, char *n)
 
 	diffwidth = 0;
 	nsize = 0;
-	nsize = spec->conversion->ascii == 's' ? ft_strlen(n)
-		: ft_wstrlen((wchar_t *)n);
+	nsize = spec->conversion->ascii == 's' ? pf_strlen(n)
+		: pf_wstrlen((wchar_t *)n);
 	if (spec->precision >= 0 && 
 			spec->precision < (ssize_t)nsize && spec->conversion->ascii == 's')
 		nsize = spec->precision;

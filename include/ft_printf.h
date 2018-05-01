@@ -6,7 +6,7 @@
 /*   By: obamzuro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/01 12:38:51 by obamzuro          #+#    #+#             */
-/*   Updated: 2018/05/01 12:41:33 by obamzuro         ###   ########.fr       */
+/*   Updated: 2018/05/01 13:25:41 by obamzuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,16 @@
 # include <stddef.h>
 # include <inttypes.h>
 
-char			pf_strnstr(const char *big, const char *little);
-size_t			ft_strlen(const char *s);
-size_t			ft_wstrlen(const wchar_t *s);
-int				ft_putchar(wchar_t c);
-void			ft_putstr(const char *s, size_t size);
-size_t			ft_wputstr(const wchar_t *s);
-void			ft_putnbr_common(intmax_t n, char base, char top);
-void			ft_uputnbr_common(uintmax_t n, char base, char top);
-size_t			ft_nbr_size(intmax_t n, char base, char alternative);
-size_t			ft_unbr_size(uintmax_t n, char base, char alternative);
+char			pf_strstr(const char *big, const char *little);
+size_t			pf_strlen(const char *s);
+size_t			pf_wstrlen(const wchar_t *s);
+int				pf_putchar(wchar_t c);
+void			pf_putstr(const char *s, size_t size);
+size_t			pf_wputstr(const wchar_t *s);
+void			pf_putnbr_common(intmax_t n, char base, char top);
+void			pf_uputnbr_common(uintmax_t n, char base, char top);
+size_t			pf_nbr_size(intmax_t n, char base, char alternative);
+size_t			pf_unbr_size(uintmax_t n, char base, char alternative);
 
 typedef enum	e_flags
 {

@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   pf_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: obamzuro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/26 01:37:41 by obamzuro          #+#    #+#             */
-/*   Updated: 2018/05/01 12:35:50 by obamzuro         ###   ########.fr       */
+/*   Created: 2018/05/01 13:22:37 by obamzuro          #+#    #+#             */
+/*   Updated: 2018/05/01 13:22:37 by obamzuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void		ft_putnbr_common(intmax_t n, char base, char top)
+void		pf_putnbr_common(intmax_t n, char base, char top)
 {
 	intmax_t	j;
 	intmax_t	dop;
@@ -39,7 +39,7 @@ void		ft_putnbr_common(intmax_t n, char base, char top)
 	}
 }
 
-void		ft_uputnbr_common(uintmax_t n, char base, char top)
+void		pf_uputnbr_common(uintmax_t n, char base, char top)
 {
 	uintmax_t	j;
 	uintmax_t	dop;

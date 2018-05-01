@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   pf_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: obamzuro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/01 12:37:42 by obamzuro          #+#    #+#             */
-/*   Updated: 2018/05/01 12:37:45 by obamzuro         ###   ########.fr       */
+/*   Created: 2018/05/01 13:23:41 by obamzuro          #+#    #+#             */
+/*   Updated: 2018/05/01 13:23:44 by obamzuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static char	count_bytes(int a)
 	return (4);
 }
 
-void		ft_putstr(const char *s, size_t size)
+void		pf_putstr(const char *s, size_t size)
 {
 	size_t i;
 
@@ -38,7 +38,7 @@ void		ft_putstr(const char *s, size_t size)
 	}
 }
 
-size_t		ft_wputstr(const wchar_t *s)
+size_t		pf_wputstr(const wchar_t *s)
 {
 	size_t i;
 	size_t res;
@@ -48,7 +48,7 @@ size_t		ft_wputstr(const wchar_t *s)
 	res = 0;
 	while (*s)
 	{
-		ft_putchar(*s);
+		pf_putchar(*s);
 		res += count_bytes(*s);
 		++s;
 	}

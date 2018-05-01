@@ -69,7 +69,7 @@ t_size_corr	*read_size(const char **src)
 	i = 0;
 	while (i < AM_SIZES)
 	{
-		if (pf_strnstr(*src, g_sizes[i].str))
+		if (pf_strstr(*src, g_sizes[i].str))
 		{
 			*src += g_sizes[i].len;
 			return (g_sizes + i);

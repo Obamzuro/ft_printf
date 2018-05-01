@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   pf_write.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: obamzuro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/23 14:07:16 by obamzuro          #+#    #+#             */
-/*   Updated: 2018/04/30 22:15:17 by obamzuro         ###   ########.fr       */
+/*   Created: 2018/05/01 13:21:22 by obamzuro          #+#    #+#             */
+/*   Updated: 2018/05/01 13:21:22 by obamzuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char		pf_strnstr(const char *big, const char *little)
+void		pf_write(char src)
 {
-	while (*big && *little && *big == *little)
+	if (g_buff.cur >= PRINTF_BUFF_SIZE)
 	{
-		++big;
-		++little;
+		write(1, g_buff.line, PRINTF_BUFF_SIZE);
+		g_buff.cur = 0;
+		++g_buff.ret;
 	}
-	if (!*little)
-		return (1);
-	return (0);
+	g_buff.line[g_buff.cur] = src;
+	++(g_buff.cur);
+}
+
+void		pf_write_tail(void)
+{
+	write(1, g_buff.line, g_buff.cur);
 }

@@ -38,7 +38,7 @@ static void	stabilize_width(t_special *spec, uintmax_t n)
 	else if (!g_flags[minus].exist)
 		print_nsymb(diffwidth, ' ');
 	if (spec->conversion->ascii == 'C')
-		nsize = ft_putchar(n);
+		nsize = pf_putchar(n);
 	else
 		pf_write(n);
 	if (g_flags[minus].exist)

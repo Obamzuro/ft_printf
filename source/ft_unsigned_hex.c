@@ -46,7 +46,7 @@ static void	calc_diffs(t_special *spec, ssize_t *nsize,
 {
 	diffs->diffprec = 0;
 	diffs->diffwidth = 0;
-	*nsize = ft_unbr_size(*n, 16, 0);
+	*nsize = pf_unbr_size(*n, 16, 0);
 	if (!*n && spec->precision != -1)
 		*nsize = 0;
 	if (spec->precision > *nsize)
@@ -77,7 +77,7 @@ static void	stabilize_width(t_special *spec, uintmax_t n)
 		print_prefix(spec);
 	print_nsymb(diffs.diffprec, '0');
 	if (n || (!n && spec->precision == -1))
-		ft_uputnbr_common(n, 16, spec->conversion->ascii == 'X');
+		pf_uputnbr_common(n, 16, spec->conversion->ascii == 'X');
 	if (g_flags[minus].exist)
 		print_nsymb(diffs.diffwidth, ' ');
 //	*res += spec->width > nsize ? spec->width : nsize;
