@@ -9,7 +9,7 @@ int main(void)
 	int b;
 
 	setlocale(LC_ALL, "");
-	a = printf("%5%\n");
-	b = ft_printf("%5%\n");
+	a = printf("%-5%\n");
+	b = ft_printf("%-5%\n");
 	printf("a = %d, b = %d", a, b);
 }
