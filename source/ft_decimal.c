@@ -6,7 +6,7 @@
 /*   By: obamzuro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 23:00:51 by obamzuro          #+#    #+#             */
-/*   Updated: 2018/04/30 21:41:04 by obamzuro         ###   ########.fr       */
+/*   Updated: 2018/05/01 18:39:40 by obamzuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	print_nsymb(size_t diff, char symb)
 	}
 }
 
-static void	print_sign(t_special *spec, intmax_t n)
+static void	print_sign(intmax_t n)
 {
 	if (n < 0)
 		pf_write('-');
@@ -47,7 +47,7 @@ static void	calc_diffs(t_special *spec, intmax_t n,
 	*nsize += diffs->diffprec;
 	if (g_flags[plus].exist || n < 0 || g_flags[space].exist)
 		++*nsize;
-	if (spec->width > *nsize)
+	if ((ssize_t)spec->width > *nsize)
 		diffs->diffwidth = spec->width - *nsize;
 }
 
@@ -60,7 +60,7 @@ static void	stabilize_width(t_special *spec, intmax_t n)
 	if (g_flags[minus].exist || (g_flags[zero].exist &&
 				spec->precision == -1 && (g_flags[plus].exist ||
 			n < 0 || g_flags[space].exist)))
-		print_sign(spec, n);
+		print_sign(n);
 	if (!g_flags[minus].exist && g_flags[zero].exist
 			&& spec->precision == -1)
 		print_nsymb(diffs.diffwidth, '0');
@@ -69,7 +69,7 @@ static void	stabilize_width(t_special *spec, intmax_t n)
 	if (!g_flags[minus].exist && (!g_flags[zero].exist
 				|| (spec->precision != -1 && (g_flags[plus].exist
 						|| n < 0 || g_flags[space].exist))))
-		print_sign(spec, n);
+		print_sign(n);
 	print_nsymb(diffs.diffprec, '0');
 	if (n || spec->precision)
 		pf_putnbr_common(n, 10, 0);

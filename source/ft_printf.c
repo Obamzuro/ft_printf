@@ -6,7 +6,7 @@
 /*   By: obamzuro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 15:51:20 by obamzuro          #+#    #+#             */
-/*   Updated: 2018/05/01 12:05:20 by obamzuro         ###   ########.fr       */
+/*   Updated: 2018/05/01 18:36:46 by obamzuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ static void		fix_conversion(t_special *spec)
 static void	print_special(const char **src, va_list *ap)
 {
 	t_special	special;
-	char		convret;
 
 	read_flags(src);
 	special.width = ft_positive_atoi(src);
@@ -63,7 +62,6 @@ int			ft_printf(const char *src, ...)
 size_t		ft_snprintf(char *line, size_t cur, const char *src, ...)
 {
 	va_list	ap;
-	int		res;
 
 	/* FIXME only 1 filling pls */
 	g_buff.line = line;

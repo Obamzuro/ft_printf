@@ -6,7 +6,7 @@
 /*   By: obamzuro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/15 08:32:53 by obamzuro          #+#    #+#             */
-/*   Updated: 2018/04/30 21:37:13 by obamzuro         ###   ########.fr       */
+/*   Updated: 2018/05/01 19:01:54 by obamzuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static void		calc_diffs(t_special *spec, uintmax_t n,
 	if (spec->precision > *nsize)
 		diffs->diffprec = spec->precision - *nsize;
 	*nsize += diffs->diffprec;
-	if (spec->width > *nsize) 
+	if ((ssize_t)spec->width > *nsize) 
 		diffs->diffwidth = spec->width - *nsize;
 }
 

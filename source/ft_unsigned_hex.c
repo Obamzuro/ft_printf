@@ -6,7 +6,7 @@
 /*   By: obamzuro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/15 06:53:13 by obamzuro          #+#    #+#             */
-/*   Updated: 2018/04/30 21:44:34 by obamzuro         ###   ########.fr       */
+/*   Updated: 2018/05/01 19:02:13 by obamzuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static void	calc_diffs(t_special *spec, ssize_t *nsize,
 	*nsize += diffs->diffprec;
 	if (g_flags[sharp].exist && *n)
 		*nsize += 2;
-	if (spec->width > *nsize)
+	if ((ssize_t)spec->width > *nsize)
 		diffs->diffwidth = spec->width - *nsize;
 }
 

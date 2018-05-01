@@ -6,7 +6,7 @@
 /*   By: obamzuro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 19:07:42 by obamzuro          #+#    #+#             */
-/*   Updated: 2018/05/01 12:50:15 by obamzuro         ###   ########.fr       */
+/*   Updated: 2018/05/01 19:02:27 by obamzuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	stabilize_width(t_special *spec, uintmax_t n)
 
 	diffwidth = 0;
 	nsize = 1;
-	if (spec->width > nsize)
+	if ((ssize_t)spec->width > nsize)
 		diffwidth = spec->width - nsize;
 	if (!g_flags[minus].exist && g_flags[zero].exist)
 		print_nsymb(diffwidth, '0');

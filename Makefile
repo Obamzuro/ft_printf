@@ -6,7 +6,7 @@
 #    By: obamzuro <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/20 11:09:03 by obamzuro          #+#    #+#              #
-#    Updated: 2018/05/01 13:28:35 by obamzuro         ###   ########.fr        #
+#    Updated: 2018/05/01 18:36:12 by obamzuro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,7 @@ $(NAME): $(OBJECT)
 	ranlib $(NAME)
 
 %.o:%.c
-	gcc -o $@ -c $< -I $(HDIR)
+	gcc -Wall -Wextra -Werror -o $@ -c $< -I $(HDIR)
 
 mai:
 	gcc main.c -I $(HDIR) -L . -lftprintf

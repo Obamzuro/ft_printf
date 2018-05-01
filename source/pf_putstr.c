@@ -6,7 +6,7 @@
 /*   By: obamzuro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/01 13:23:41 by obamzuro          #+#    #+#             */
-/*   Updated: 2018/05/01 13:23:44 by obamzuro         ###   ########.fr       */
+/*   Updated: 2018/05/01 18:36:28 by obamzuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ void		pf_putstr(const char *s, size_t size)
 
 size_t		pf_wputstr(const wchar_t *s)
 {
-	size_t i;
 	size_t res;
 
 	if (!s)

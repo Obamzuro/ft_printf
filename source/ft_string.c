@@ -6,7 +6,7 @@
 /*   By: obamzuro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 19:42:28 by obamzuro          #+#    #+#             */
-/*   Updated: 2018/05/01 12:15:31 by obamzuro         ###   ########.fr       */
+/*   Updated: 2018/05/01 19:02:57 by obamzuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ static size_t	print_str(t_special *spec, char *n, size_t size)
 {
 	size_t num;
 
+	num = 0;
 	if (spec->conversion->ascii == 's')
 	{
 		pf_putstr(n, size);
