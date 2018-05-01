@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <limits.h>
-#include <libft.h>
+#include "ft_printf.h"
 #include <locale.h>
 
 int main(void)
@@ -9,7 +9,7 @@ int main(void)
 	int b;
 
 	setlocale(LC_ALL, "");
-	a = printf("1asgf %S\n", L"😦");
-	b = ft_printf("2asgf %S\n", L"😦");
+	a = printf("%5%\n");
+	b = ft_printf("%5%\n");
 	printf("a = %d, b = %d", a, b);
 }

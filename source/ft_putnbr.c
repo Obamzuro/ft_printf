@@ -6,16 +6,11 @@
 /*   By: obamzuro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/26 01:37:41 by obamzuro          #+#    #+#             */
-/*   Updated: 2018/04/30 22:34:54 by obamzuro         ###   ########.fr       */
+/*   Updated: 2018/05/01 12:35:50 by obamzuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-void	ft_putnbr(int n)
-{
-	ft_putnbr_fd(n, 1);
-}
+#include "ft_printf.h"
 
 void		ft_putnbr_common(intmax_t n, char base, char top)
 {

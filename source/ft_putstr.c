@@ -1,27 +1,56 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: obamzuro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/26 01:39:31 by obamzuro          #+#    #+#             */
-/*   Updated: 2018/04/30 18:38:05 by obamzuro         ###   ########.fr       */
+/*   Created: 2018/05/01 12:37:42 by obamzuro          #+#    #+#             */
+/*   Updated: 2018/05/01 12:37:45 by obamzuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-void	ft_putstr(const char *s, size_t size)
+static char	count_bytes(int a)
 {
-	if (!s)
-		return ;
-	ft_putstr_fd(s, 1, size);
+	if (a <= 0x7F)
+		return (1);
+	if (a <= 0x7FF)
+		return (2);
+	if (a <= 0xFFFF)
+		return (3);
+	return (4);
 }
 
-size_t	ft_wputstr(const wchar_t *s)
+void		ft_putstr(const char *s, size_t size)
 {
+	size_t i;
+
+	if (!s)
+		return ;
+	i = 0;
+	while (*s && i < size)
+	{
+		pf_write(*s);
+		++s;
+		++i;
+	}
+}
+
+size_t		ft_wputstr(const wchar_t *s)
+{
+	size_t i;
+	size_t res;
+
 	if (!s)
 		return (0);
-	return (ft_wputstr_fd(s, 1));
+	res = 0;
+	while (*s)
+	{
+		ft_putchar(*s);
+		res += count_bytes(*s);
+		++s;
+	}
+	return (res);
 }

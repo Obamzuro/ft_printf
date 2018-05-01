@@ -6,7 +6,7 @@
 #    By: obamzuro <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/20 11:09:03 by obamzuro          #+#    #+#              #
-#    Updated: 2018/04/30 21:45:31 by obamzuro         ###   ########.fr        #
+#    Updated: 2018/05/01 12:52:46 by obamzuro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,16 +14,10 @@ NAME = libftprintf.a
 
 SRC = ft_strnstr.c				\
 	  ft_strlen.c				\
-	  ft_atoi.c					\
-	  ft_itoa.c					\
 	  ft_putchar.c				\
 	  ft_putstr.c				\
 	  ft_putnbr.c				\
-	  ft_putchar_fd.c			\
-	  ft_putstr_fd.c			\
-	  ft_putnbr_fd.c			\
 	  ft_nbr_size.c				\
-	  ft_itoa_base.c			\
 	  ft_printf.c				\
 	  ft_decimal.c				\
 	  ft_unsigned.c				\
@@ -38,6 +32,8 @@ SRC = ft_strnstr.c				\
 
 SRCDIRS = $(addprefix source/, $(SRC))
 
+HDIR = include
+
 OBJECT = $(SRCDIRS:.c=.o)
 
 all: $(NAME)
@@ -47,10 +43,10 @@ $(NAME): $(OBJECT)
 	ranlib $(NAME)
 
 %.o:%.c
-	gcc -o $@ -c $< -I source
+	gcc -o $@ -c $< -I $(HDIR)
 
 mai:
-	gcc main.c -I source -L . -lftprintf
+	gcc main.c -I $(HDIR) -L . -lftprintf
 
 clean:
 	rm -f $(OBJECT)

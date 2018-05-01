@@ -6,11 +6,11 @@
 /*   By: obamzuro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 19:42:28 by obamzuro          #+#    #+#             */
-/*   Updated: 2018/04/30 22:05:35 by obamzuro         ###   ########.fr       */
+/*   Updated: 2018/05/01 12:15:31 by obamzuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
 static void		print_nsymb(size_t diff, char symb)
 {
@@ -47,7 +47,8 @@ static void		stabilize_width(t_special *spec, char *n)
 	nsize = 0;
 	nsize = spec->conversion->ascii == 's' ? ft_strlen(n)
 		: ft_wstrlen((wchar_t *)n);
-	if ((size_t)spec->precision < nsize && spec->conversion->ascii == 's')
+	if (spec->precision >= 0 && 
+			spec->precision < (ssize_t)nsize && spec->conversion->ascii == 's')
 		nsize = spec->precision;
 	if (spec->width > nsize)
 		diffwidth = spec->width - nsize;

@@ -6,11 +6,11 @@
 /*   By: obamzuro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 15:51:20 by obamzuro          #+#    #+#             */
-/*   Updated: 2018/04/30 22:03:26 by obamzuro         ###   ########.fr       */
+/*   Updated: 2018/05/01 12:05:20 by obamzuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
 static void		fix_conversion(t_special *spec)
 {
@@ -37,8 +37,8 @@ int			ft_printf(const char *src, ...)
 {
 	va_list		ap;
 
-//	/* FIXME only 1 filling pls */
 	g_buff.cur = 0;
+	g_buff.line = malloc(PRINTF_BUFF_SIZE);
 	va_start(ap, src);
 	fill_sizes();
 	fill_convs();
@@ -56,30 +56,33 @@ int			ft_printf(const char *src, ...)
 	}
 	va_end(ap);
 	pf_write_tail();
+	free(g_buff.line);
 	return (g_buff.ret * PRINTF_BUFF_SIZE + g_buff.cur);
 }
 
-//size_t		ft_snprintf(char *line, size_t *cur, const char *src, ...)
-//{
-//	va_list	ap;
-//	int		res;
-//
-//	va_start(ap, src);
-//	/* FIXME only 1 filling pls */
-//	fill_sizes();
-//	fill_convs();
-//	fill_flags();
-//	while (*src)
-//	{
-//		if (*src == '%')
-//		{
-//			++src;
-//			print_special(&src, &ap, &res);
-//			continue;
-//		}
-//		snwrite(line, cur, *src);
-//		++src;
-//	}
-//	va_end(ap);
-//	return (*cur);
-//}
+size_t		ft_snprintf(char *line, size_t cur, const char *src, ...)
+{
+	va_list	ap;
+	int		res;
+
+	/* FIXME only 1 filling pls */
+	g_buff.line = line;
+	g_buff.cur = cur;
+	va_start(ap, src);
+	fill_sizes();
+	fill_convs();
+	fill_flags();
+	while (*src)
+	{
+		if (*src == '%')
+		{
+			++src;
+			print_special(&src, &ap);
+			continue;
+		}
+		pf_write(*src);
+		++src;
+	}
+	va_end(ap);
+	return (g_buff.cur);
+}
