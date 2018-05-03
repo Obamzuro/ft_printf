@@ -46,7 +46,7 @@ $(NAME): $(OBJECT)
 	gcc -Wall -Wextra -Werror -o $@ -c $< -I $(HDIR)
 
 mai:
-	gcc main.c -I $(HDIR) -L . -lftprintf
+	gcc -g main.c -I $(HDIR) -L . -lftprintf -o pf
 
 clean:
 	rm -f $(OBJECT)

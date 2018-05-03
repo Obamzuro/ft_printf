@@ -12,12 +12,13 @@
 
 #include "ft_printf.h"
 
-size_t	pf_nbr_size(intmax_t n, char base, char alternative)
+unsigned char	pf_nbr_size(intmax_t n, char base, char alternative)
 {
 	size_t i;
 
 	i = 1;
-	while (n / base)
+	n /= base;
+	while (n)
 	{
 		++i;
 		n /= base;
@@ -32,12 +33,13 @@ size_t	pf_nbr_size(intmax_t n, char base, char alternative)
 	return (i);
 }
 
-size_t	pf_unbr_size(uintmax_t n, char base, char alternative)
+unsigned char	pf_unbr_size(uintmax_t n, char base, char alternative)
 {
 	size_t i;
 
 	i = 1;
-	while (n / base)
+	n /= base;
+	while (n)
 	{
 		++i;
 		n /= base;
