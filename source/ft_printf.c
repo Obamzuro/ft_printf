@@ -66,7 +66,7 @@ int			ft_printf(const char *src, ...)
 	}
 	va_end(ap);
 	pf_write_tail();
-	free(g_buff.line);
+//	free(g_buff.line);
 	return (g_buff.ret * PRINTF_BUFF_SIZE + g_buff.cur);
 }
 

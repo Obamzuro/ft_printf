@@ -12,37 +12,31 @@
 
 #include "ft_printf.h"
 
-void		pf_putnbr_common(intmax_t n, char base, char top)
+void		pf_putnbr_common(intmax_t n, char base, char top, unsigned char nbr_size)
 {
 	intmax_t	j;
-	intmax_t	dop;
 	int			a;
 	char		*baseline;
 
 	if (top)
-		baseline = "0123456789ABCDEF";
+		baseline = "FEDCBA98765432100123456789ABCDEF";
 	else
-		baseline = "0123456789abcdef";
+		baseline = "fedcba98765432100123456789abcdef";
 	j = 1;
-	dop = n;
-	while (dop / base)
-	{
+	while (--nbr_size)
 		j *= base;
-		dop /= base;
-	}
 	while (j)
 	{
 		a = n / j % base;
-		a = a > 0 ? baseline[a] : baseline[-a];
+		a = baseline[a + 16];
 		pf_write(a);
 		j /= base;
 	}
 }
 
-void		pf_uputnbr_common(uintmax_t n, char base, char top)
+void		pf_uputnbr_common(uintmax_t n, char base, char top, unsigned char unbr_size)
 {
 	uintmax_t	j;
-	uintmax_t	dop;
 	int			a;
 	char		*baseline;
 
@@ -51,12 +45,8 @@ void		pf_uputnbr_common(uintmax_t n, char base, char top)
 	else
 		baseline = "0123456789abcdef";
 	j = 1;
-	dop = n;
-	while (dop / base)
-	{
+	while (--unbr_size)
 		j *= base;
-		dop /= base;
-	}
 	while (j)
 	{
 		a = n / j % base;

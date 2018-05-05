@@ -43,10 +43,13 @@ $(NAME): $(OBJECT)
 	ranlib $(NAME)
 
 %.o:%.c
-	gcc -Wall -Wextra -Werror -o $@ -c $< -I $(HDIR)
+	gcc -g -Wall -Wextra -Werror -o $@ -c $< -I $(HDIR)
 
-mai:
-	gcc -g main.c -I $(HDIR) -L . -lftprintf -o pf
+mai: main.c $(NAME)
+	gcc main.c -I $(HDIR) -L . -lftprintf
+
+pf: speedtest_printf.c $(NAME)
+	gcc -pg speedtest_printf.c -I $(HDIR) -L . -lftprintf -o pf
 
 clean:
 	rm -f $(OBJECT)

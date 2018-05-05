@@ -31,8 +31,8 @@ size_t			pf_wstrlen(const wchar_t *s);
 int				pf_putchar(wchar_t c);
 void			pf_putstr(const char *s, size_t size);
 size_t			pf_wputstr(const wchar_t *s);
-void			pf_putnbr_common(intmax_t n, char base, char top);
-void			pf_uputnbr_common(uintmax_t n, char base, char top);
+void			pf_putnbr_common(intmax_t n, char base, char top, unsigned char nbr_size);
+void			pf_uputnbr_common(uintmax_t n, char base, char top, unsigned char unbr_size);
 unsigned char	pf_nbr_size(intmax_t n, char base, char alternative);
 unsigned char	pf_unbr_size(uintmax_t n, char base, char alternative);
 

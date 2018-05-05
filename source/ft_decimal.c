@@ -35,11 +35,12 @@ static void	print_sign(intmax_t n)
 }
 
 static void	calc_diffs(t_special *spec, intmax_t n,
-		ssize_t *nsize, t_diffs *diffs)
+		ssize_t *nsize, t_diffs *diffs, unsigned char *nbr_size)
 {
 	diffs->diffprec = 0;
 	diffs->diffwidth = 0;
 	*nsize = pf_nbr_size(n, 10, 0);
+	*nbr_size = *nsize;
 	if (!n && !spec->precision)
 		*nsize = 0;
 	if (spec->precision > *nsize)
@@ -53,10 +54,11 @@ static void	calc_diffs(t_special *spec, intmax_t n,
 
 static void	stabilize_width(t_special *spec, intmax_t n)
 {
-	ssize_t		nsize;
-	t_diffs		diffs;
+	ssize_t			nsize;
+	t_diffs			diffs;
+	unsigned char	nbr_size;
 
-	calc_diffs(spec, n, &nsize, &diffs);
+	calc_diffs(spec, n, &nsize, &diffs, &nbr_size);
 	if (g_flags[minus].exist || (g_flags[zero].exist &&
 				spec->precision == -1 && (g_flags[plus].exist ||
 			n < 0 || g_flags[space].exist)))
@@ -72,7 +74,7 @@ static void	stabilize_width(t_special *spec, intmax_t n)
 		print_sign(n);
 	print_nsymb(diffs.diffprec, '0');
 	if (n || spec->precision)
-		pf_putnbr_common(n, 10, 0);
+		pf_putnbr_common(n, 10, 0, nbr_size);
 	if (g_flags[minus].exist)
 		print_nsymb(diffs.diffwidth, ' ');
 //	*res += spec->width > nsize ? spec->width : nsize;

@@ -33,13 +33,15 @@ static void	calc_nsize(t_special *spec, uintmax_t n, ssize_t *nsize)
 
 static void	stabilize_width(t_special *spec, uintmax_t n)
 {
-	ssize_t		nsize;
-	size_t		diffprec;
-	size_t		diffwidth;
+	ssize_t			nsize;
+	size_t			diffprec;
+	size_t			diffwidth;
+	unsigned char	unbr_size;
 
 	diffprec = 0;
 	diffwidth = 0;
 	calc_nsize(spec, n, &nsize);
+	unbr_size = nsize;
 	if (spec->precision > nsize)
 		diffprec = spec->precision - nsize;
 	nsize += diffprec;
@@ -54,7 +56,7 @@ static void	stabilize_width(t_special *spec, uintmax_t n)
 	}
 	print_nsymb(diffprec, '0');
 	if (n || spec->precision)
-		pf_uputnbr_common(n, 10, 0);
+		pf_uputnbr_common(n, 10, 0, unbr_size);
 	if (g_flags[minus].exist)
 		print_nsymb(diffwidth, ' ');
 }
