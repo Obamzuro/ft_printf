@@ -6,7 +6,7 @@
 /*   By: obamzuro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/09 12:07:49 by obamzuro          #+#    #+#             */
-/*   Updated: 2018/05/09 15:24:29 by obamzuro         ###   ########.fr       */
+/*   Updated: 2018/05/09 15:38:14 by obamzuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,12 @@ void	fix_conversion(t_special *spec)
 	if (spec->conversion->ascii == 'D' || spec->conversion->ascii == 'U' ||
 			spec->conversion->ascii == 'O')
 		spec->size = g_sizes + LONG_INT;
+	else if (spec->conversion->ascii == 'p')
+	{
+		g_flags[sharp].exist = 1;
+		spec->conversion->ascii = 'x';
+		spec->size = g_sizes + LONG_INT;
+	}
 }
 
 void	print_special(const char **src, va_list *ap, t_buffer *buff)
