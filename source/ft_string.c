@@ -6,7 +6,7 @@
 /*   By: obamzuro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 19:42:28 by obamzuro          #+#    #+#             */
-/*   Updated: 2018/05/09 11:31:00 by obamzuro         ###   ########.fr       */
+/*   Updated: 2018/05/09 15:08:50 by obamzuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void		stabilize_width(t_special *spec, char *n, t_buffer *buff)
 	nsize = 0;
 	nsize = spec->conversion->ascii == 's' ? pf_strlen(n)
 		: pf_wstrlen((wchar_t *)n);
-	if (spec->precision >= 0 && 
+	if (spec->precision >= 0 &&
 			spec->precision < (ssize_t)nsize && spec->conversion->ascii == 's')
 		nsize = spec->precision;
 	if (spec->width > nsize)
@@ -63,7 +63,6 @@ static void		stabilize_width(t_special *spec, char *n, t_buffer *buff)
 	nsize = print_str(spec, n, nsize, buff);
 	if (g_flags[minus].exist)
 		print_nsymb(diffwidth, ' ', buff);
-//	*res += spec->width > (int)nsize ? spec->width : nsize;
 }
 
 void			print_string(t_special *spec, va_list *ap, t_buffer *buff)

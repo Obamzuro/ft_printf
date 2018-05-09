@@ -6,7 +6,7 @@
 /*   By: obamzuro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/01 12:38:51 by obamzuro          #+#    #+#             */
-/*   Updated: 2018/05/09 12:14:24 by obamzuro         ###   ########.fr       */
+/*   Updated: 2018/05/09 15:28:29 by obamzuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 
 typedef struct	s_buffer
 {
-	char	*line;/*[PRINTF_BUFF_SIZE];*/
+	char	*line;
 	size_t	cur;
 	size_t	ret;
 	int		fd;
@@ -51,8 +51,10 @@ size_t			pf_wstrlen(const wchar_t *s);
 int				pf_putchar(wchar_t c, t_buffer *buff);
 void			pf_putstr(const char *s, size_t size, t_buffer *buff);
 size_t			pf_wputstr(const wchar_t *s, t_buffer *buff);
-void			pf_putnbr_common(t_number *n, char base, char top, t_buffer *buff);
-void			pf_uputnbr_common(t_unumber *n, char base, char top, t_buffer *buff);
+void			pf_putnbr_common(t_number *n, char base,
+		char top, t_buffer *buff);
+void			pf_uputnbr_common(t_unumber *n, char base,
+		char top, t_buffer *buff);
 unsigned char	pf_nbr_size(intmax_t n, char base, char alternative);
 unsigned char	pf_unbr_size(uintmax_t n, char base, char alternative);
 
@@ -124,15 +126,17 @@ void			read_flags(const char **src);
 size_t			ft_positive_atoi(const char **src);
 size_t			read_width(const char **src, va_list *ap);
 ssize_t			read_precision(const char **src, va_list *ap);
-t_size_corr*	read_size(const char **src);
-t_conv_corr*	read_conversion(const char **src);
+t_size_corr		*read_size(const char **src);
+t_conv_corr		*read_conversion(const char **src);
 void			fix_conversion(t_special *spec);
 void			print_special(const char **src, va_list *ap, t_buffer *buff);
 
 void			print_decimal(t_special *spec, va_list *ap, t_buffer *buff);
 void			print_unsigned(t_special *spec, va_list *ap, t_buffer *buff);
-void			print_unsigned_hex(t_special *spec, va_list *ap, t_buffer *buff);
-void			print_unsigned_octal(t_special *spec, va_list *ap, t_buffer *buff);
+void			print_unsigned_hex(t_special *spec, va_list *ap,
+		t_buffer *buff);
+void			print_unsigned_octal(t_special *spec, va_list *ap,
+		t_buffer *buff);
 void			print_char(t_special *spec, va_list *ap, t_buffer *buff);
 void			print_string(t_special *spec, va_list *ap, t_buffer *buff);
 void			print_pointer(t_special *spec, va_list *ap, t_buffer *buff);
@@ -142,6 +146,7 @@ void			get_decimal(t_special *spec, va_list *ap, intmax_t *n);
 void			pf_write(char src, t_buffer *buff);
 void			pf_write_tail(t_buffer *buff);
 
+void			pf_filling_globals(void);
 int				ft_printf(const char *src, ...);
 void			ft_fprintf(int fd, const char *src, ...);
 size_t			ft_snprintf(char *line, size_t cur, const char *src, ...);

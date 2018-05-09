@@ -6,7 +6,7 @@
 /*   By: obamzuro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 19:07:42 by obamzuro          #+#    #+#             */
-/*   Updated: 2018/05/09 11:28:31 by obamzuro         ###   ########.fr       */
+/*   Updated: 2018/05/09 15:07:49 by obamzuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ static void	stabilize_width(t_special *spec, uintmax_t n, t_buffer *buff)
 		pf_write(n, buff);
 	if (g_flags[minus].exist)
 		print_nsymb(diffwidth, ' ', buff);
-//	*res += spec->width > nsize ? spec->width : nsize;
 }
 
 void		print_char(t_special *spec, va_list *ap, t_buffer *buff)

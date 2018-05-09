@@ -6,7 +6,7 @@
 /*   By: obamzuro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/09 12:07:49 by obamzuro          #+#    #+#             */
-/*   Updated: 2018/05/09 12:08:18 by obamzuro         ###   ########.fr       */
+/*   Updated: 2018/05/09 15:24:29 by obamzuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ size_t	read_width(const char **src, va_list *ap)
 		return (ft_positive_atoi(src));
 }
 
-void		fix_conversion(t_special *spec)
+void	fix_conversion(t_special *spec)
 {
 	if (spec->conversion->ascii == 'D' || spec->conversion->ascii == 'U' ||
 			spec->conversion->ascii == 'O')

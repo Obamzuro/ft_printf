@@ -6,11 +6,18 @@
 /*   By: obamzuro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 15:51:20 by obamzuro          #+#    #+#             */
-/*   Updated: 2018/05/09 12:14:25 by obamzuro         ###   ########.fr       */
+/*   Updated: 2018/05/09 15:12:19 by obamzuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+void		pf_filling_globals(void)
+{
+	fill_sizes();
+	fill_convs();
+	fill_flags();
+}
 
 int			ft_printf(const char *src, ...)
 {
@@ -50,9 +57,6 @@ void		ft_fprintf(int fd, const char *src, ...)
 	buff.fd = fd;
 	buff.line = malloc(PRINTF_BUFF_SIZE);
 	va_start(ap, src);
-	fill_sizes();
-	fill_convs();
-	fill_flags();
 	while (*src)
 	{
 		if (*src == '%')
@@ -74,14 +78,10 @@ size_t		ft_snprintf(char *line, size_t cur, const char *src, ...)
 	va_list		ap;
 	t_buffer	buff;
 
-	/* FIXME only 1 filling pls */
 	buff.line = line;
 	buff.cur = cur;
 	buff.fd = 1;
 	va_start(ap, src);
-	fill_sizes();
-	fill_convs();
-	fill_flags();
 	while (*src)
 	{
 		if (*src == '%')
