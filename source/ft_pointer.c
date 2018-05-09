@@ -6,7 +6,7 @@
 /*   By: obamzuro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/15 03:47:56 by obamzuro          #+#    #+#             */
-/*   Updated: 2018/04/30 21:39:48 by obamzuro         ###   ########.fr       */
+/*   Updated: 2018/05/09 12:17:18 by obamzuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static void		stabilize_width(t_special *spec, uintmax_t n)
 //	*res += spec->width > nsize + 2 ? spec->width : nsize + 2;
 }
 
-void			print_pointer(t_special *spec, va_list *ap)
+void			print_pointer(t_special *spec, va_list *ap, t_buffer *buff)
 {
 	uintmax_t	n;
 

@@ -6,35 +6,35 @@
 /*   By: obamzuro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/01 13:22:37 by obamzuro          #+#    #+#             */
-/*   Updated: 2018/05/08 20:27:06 by obamzuro         ###   ########.fr       */
+/*   Updated: 2018/05/09 12:02:36 by obamzuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void		pf_putnbr_common(intmax_t n, char base, char top, unsigned char nbr_size)
+void		pf_putnbr_common(t_number *n, char base, char top, t_buffer *buff)
 {
 	intmax_t	j;
 	int			a;
 	char		*baseline;
 
 	if (top)
-		baseline = "FEDCBA98765432100123456789ABCDEF";
+		baseline = "FEDCBA9876543210123456789ABCDEF";
 	else
-		baseline = "fedcba98765432100123456789abcdef";
+		baseline = "fedcba9876543210123456789abcdef";
 	j = 1;
-	while (--nbr_size)
+	while (--(n->nbrsize))
 		j *= base;
 	while (j)
 	{
-		a = n / j % base;
-		a = baseline[a + 16];
-		pf_write(a);
+		a = n->num / j % base;
+		a = baseline[a + 15];
+		pf_write(a, buff);
 		j /= base;
 	}
 }
 
-void		pf_uputnbr_common(uintmax_t n, char base, char top, unsigned char unbr_size)
+void		pf_uputnbr_common(t_unumber *n, char base, char top, t_buffer *buff)
 {
 	uintmax_t	j;
 	int			a;
@@ -45,13 +45,13 @@ void		pf_uputnbr_common(uintmax_t n, char base, char top, unsigned char unbr_siz
 	else
 		baseline = "0123456789abcdef";
 	j = 1;
-	while (--unbr_size)
+	while (--(n->nbrsize))
 		j *= base;
 	while (j)
 	{
-		a = n / j % base;
+		a = n->num / j % base;
 		a = baseline[a];
-		pf_write(a);
+		pf_write(a, buff);
 		j /= base;
 	}
 }

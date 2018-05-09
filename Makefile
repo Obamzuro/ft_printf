@@ -6,7 +6,7 @@
 #    By: obamzuro <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/20 11:09:03 by obamzuro          #+#    #+#              #
-#    Updated: 2018/05/01 19:26:25 by obamzuro         ###   ########.fr        #
+#    Updated: 2018/05/09 12:08:20 by obamzuro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,8 @@ SRC = pf_strstr.c				\
 	  ft_string.c				\
 	  ft_getvarg.c				\
 	  ft_fillglob.c				\
-	  ft_printf_plus.c			\
+	  pf_handling_special.c		\
+	  pf_handling_special_plus.c\
 
 SRCDIRS = $(addprefix source/, $(SRC))
 

@@ -6,7 +6,7 @@
 /*   By: obamzuro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/01 12:38:51 by obamzuro          #+#    #+#             */
-/*   Updated: 2018/05/08 20:22:26 by obamzuro         ###   ########.fr       */
+/*   Updated: 2018/05/09 12:14:24 by obamzuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,34 @@
 # include <stddef.h>
 # include <inttypes.h>
 
+typedef struct	s_buffer
+{
+	char	*line;/*[PRINTF_BUFF_SIZE];*/
+	size_t	cur;
+	size_t	ret;
+	int		fd;
+}				t_buffer;
+
+typedef struct	s_number
+{
+	intmax_t		num;
+	int				nbrsize;
+}				t_number;
+
+typedef struct	s_unumber
+{
+	uintmax_t		num;
+	int				nbrsize;
+}				t_unumber;
+
 char			pf_strstr(const char *big, const char *little);
 size_t			pf_strlen(const char *s);
 size_t			pf_wstrlen(const wchar_t *s);
-int				pf_putchar(wchar_t c);
-void			pf_putstr(const char *s, size_t size);
-size_t			pf_wputstr(const wchar_t *s);
-void			pf_putnbr_common(intmax_t n, char base, char top, unsigned char nbr_size);
-void			pf_uputnbr_common(uintmax_t n, char base, char top, unsigned char unbr_size);
+int				pf_putchar(wchar_t c, t_buffer *buff);
+void			pf_putstr(const char *s, size_t size, t_buffer *buff);
+size_t			pf_wputstr(const wchar_t *s, t_buffer *buff);
+void			pf_putnbr_common(t_number *n, char base, char top, t_buffer *buff);
+void			pf_uputnbr_common(t_unumber *n, char base, char top, t_buffer *buff);
 unsigned char	pf_nbr_size(intmax_t n, char base, char alternative);
 unsigned char	pf_unbr_size(uintmax_t n, char base, char alternative);
 
@@ -91,13 +111,6 @@ typedef struct	s_diffs
 	size_t	diffprec;
 }				t_diffs;
 
-typedef struct	s_buffer
-{
-	char	*line;/*[PRINTF_BUFF_SIZE];*/
-	size_t	cur;
-	size_t	ret;
-}				t_buffer;
-
 t_size_corr		g_sizes[AM_SIZES];
 t_conv_corr		g_convs[AM_CONVS];
 t_flags_corr	g_flags[AM_FLAGS];
@@ -109,9 +122,12 @@ void			reset_flags(void);
 
 void			read_flags(const char **src);
 size_t			ft_positive_atoi(const char **src);
+size_t			read_width(const char **src, va_list *ap);
 ssize_t			read_precision(const char **src, va_list *ap);
 t_size_corr*	read_size(const char **src);
 t_conv_corr*	read_conversion(const char **src);
+void			fix_conversion(t_special *spec);
+void			print_special(const char **src, va_list *ap, t_buffer *buff);
 
 void			print_decimal(t_special *spec, va_list *ap, t_buffer *buff);
 void			print_unsigned(t_special *spec, va_list *ap, t_buffer *buff);
@@ -127,5 +143,6 @@ void			pf_write(char src, t_buffer *buff);
 void			pf_write_tail(t_buffer *buff);
 
 int				ft_printf(const char *src, ...);
+void			ft_fprintf(int fd, const char *src, ...);
 size_t			ft_snprintf(char *line, size_t cur, const char *src, ...);
 #endif
